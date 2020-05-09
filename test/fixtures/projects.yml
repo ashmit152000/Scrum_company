@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  start_date: 2020-05-06 10:58:52
+  dead_line: 2020-05-06 10:58:52
+
+two:
+  name: MyString
+  description: MyText
+  start_date: 2020-05-06 10:58:52
+  dead_line: 2020-05-06 10:58:52

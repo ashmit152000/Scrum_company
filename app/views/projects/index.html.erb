@@ -1,0 +1,36 @@
+<p align="center" class="alert alert-info slide">All these projects are sorted by dead line in ascending order</p>
+
+<div class="row">
+
+
+  <% @projects.each do |p| %>
+
+
+<div class="card col-md-3" style="width: 18rem;">
+  <% if p.image.attached? %>
+      <%= image_tag(p.image)%>
+<% else %>
+  <img class="card-img-top" src="https://3.bp.blogspot.com/-n1-FoV0sxrs/T2npV42Yx9I/AAAAAAAAAV8/rRngmJXvVEg/s1600/Google_tech2.gif" alt="Card image cap">
+
+  <hr>
+<% end %>
+<div class="card-body">
+  <h5 class="card-title"><%= link_to "#{p.name }", project_path(p)%></h5>
+  <p class="card-text"><%= p.description %></p>
+
+   <a href="#" class="btn btn-warning">Edit</a>
+    <%= link_to "Delete",project_path(p), method: :delete, class:"btn btn-danger"%>
+
+  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+</div>
+
+
+
+
+</div>
+
+  <% end %>
+
+
+
+</div>

@@ -1,0 +1,40 @@
+<% if @project.memberships.any? %>
+<div class="row">
+	<div class="col-10">
+			<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Rank</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	<% @project.memberships.each do |s| %>
+    <tr>
+
+      <td><%= User.find_by(id: s.user_id).first_name + " " + User.find_by(id: s.user_id).last_name %></td>
+
+        <td><%= User.find_by(id: s.user_id).email%></td>
+
+          <td><%= s.rank %></td>
+
+    </tr>
+
+    <% end %>
+
+  </tbody>
+</table>
+
+	</div>
+</div>
+<% else %>
+
+<div class="row">
+  <div class="col-9">
+      <h2 class="card card-header">There is no member added yet.</h2>
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,47 @@
+
+
+<% if @member %>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-header  members-value">
+      <strong>Email:</strong> <%= @member.email %>
+  	<strong>Name:</strong> <%= @member.first_name + " " + @member.last_name %>
+
+
+
+    <strong>Rank:</strong>
+    <div class="form-group row">
+    <div class="col-sm-10">
+    <%= select_tag "rank", options_for_select([ "Project Manager", "Project Lead", "Lead Developer","Team Manager","Human resource manager","Frontend Developer", "Backend Developer", "Fullstack Developer"]),placeholder: "Select rank" %>
+    </div>
+    </div>
+
+
+    <button class="btn btn-success" id="members-select">Add as project member</button>
+
+    <%= text_field_tag :user, params[:user], value: @member.id, readonly: true ,hidden: true %>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+    </div>
+  </div>
+
+
+<% else %>
+
+  <h1>This user is not present </h1>
+
+<% end %>
