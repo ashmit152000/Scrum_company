@@ -30,13 +30,14 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by(id: params[:id])
+    @user_rank = Membership.where(user: current_user,project: @project).first.rank
     # puts params[:id]
   end
 
 
   def index
 
-    @projects = Project.where(user: current_user).order! 'dead_line ASC'
+    @projects = current_user.projects.order! 'dead_line ASC'
 
   end
 
