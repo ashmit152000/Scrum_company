@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'search_members',to: "projects#search_members"
   get 'request_projects',to: "projects#request_projects"
   get 'accept_requests',to: "requests#accept"
-  post 'accept_requests/:id',to: "request#accept"
+  post 'accept_requests',to: "request#accept"
+  get 'decline_requests',to: "requests#decline"
+  post 'decline_requests',to: "requests#decline" 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

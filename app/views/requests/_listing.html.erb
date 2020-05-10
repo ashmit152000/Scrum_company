@@ -19,7 +19,8 @@
 
         <td><%= User.find_by(id: r.user_id).email%></td>
 
-          <td><%= link_to "Accept", accept_requests_path(id: r.id, project: r.project_id, user: r.user_id), class: "btn btn-success"%> <%= link_to "Decline", "#", class: "btn btn-danger", method: :post %></td>
+          <td><%= link_to "Accept", accept_requests_path(id: r.id, project: r.project_id, user: r.user_id), class: "btn btn-success"%> 
+            <%= link_to "Decline",   decline_requests_path(id: r.id, project: r.project_id, user: r.user_id), class: "btn btn-danger", method: :post %></td>
 
     </tr>
 
