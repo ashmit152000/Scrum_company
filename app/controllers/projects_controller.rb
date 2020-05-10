@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
     if @project.users.include? current_user
       @user_rank = Membership.where(user: current_user,project: @project).first.rank
     end
+    @request = @project.requests.where(accepted: false, rejected: false).count
     # puts params[:id]
   end
 

@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
 
 	def index 
 		project = Project.find_by(id: params[:project])
-		@requests = Request.where(project: project).all
+		@requests = Request.where(" project_id = ? AND accepted = ? AND rejected = ?", project.id,false, false).all
 	end
 
 	def accept
@@ -30,8 +30,9 @@ class RequestsController < ApplicationController
 		if request 
 			request.accepted = true
 			request.save
-		end
 
+		end
+		flash[:notice] = "You accepted the request"
 		redirect_to requests_path(project: project)
 	end
 end

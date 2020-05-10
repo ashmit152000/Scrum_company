@@ -24,8 +24,12 @@
 <% end %>
 
 <%= link_to requests_path(project: @project) do %>
-	<%= fa_icon "handshake-o 2x" %>
+	<%= fa_icon "handshake-o 2x" %> <button type="button" class="btn btn-primary add_margin">
+  Requests <span class="badge badge-light"><%= @request %></span>
+</button><br/>
 <% end %>
+
+
 
 <%= render "projects/listing" %>
 
