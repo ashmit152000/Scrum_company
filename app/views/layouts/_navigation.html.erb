@@ -21,8 +21,14 @@
 
       <li class="nav-item <%= 'active' if request.path == add_projects_path %> ">
         <!-- <a class="nav-link" href="#">Signup</a> -->
+        <% if current_user.rank == "Admin" %>
         <%= link_to "Add Projects",  add_projects_path, class:"nav-link" %>
+
       </li>
+
+      <% else %>
+          <%= link_to "Request projects", request_projects_path, class: "nav-link" %>
+        <% end %>
 
 
       <li class="nav-item <%= 'active' if request.path == projects_path %> ">

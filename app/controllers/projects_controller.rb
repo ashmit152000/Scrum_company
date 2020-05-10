@@ -29,8 +29,10 @@ class ProjectsController < ApplicationController
 
 
   def show
-    @project = Project.find_by(id: params[:id])
-    @user_rank = Membership.where(user: current_user,project: @project).first.rank
+      @project = Project.find_by(id: params[:id])
+    if @project.users.include? current_user
+      @user_rank = Membership.where(user: current_user,project: @project).first.rank
+    end
     # puts params[:id]
   end
 
@@ -49,7 +51,10 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
-
+  def request_projects
+      @projects = Project.all
+     
+  end
   # To search members
 
   def search_members

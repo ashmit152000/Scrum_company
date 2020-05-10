@@ -1,4 +1,4 @@
-
+<% if current_user.rank == 'Admin'%>
 <h1 align="center" class="heading">Add projects</h1>
 
 <div align="center">
@@ -78,3 +78,6 @@
     </div>
   </div>
 </div>
+<% else %>
+  <h1 align="center">You are not the admin so you cannot create projects.</h1>
+<% end %>

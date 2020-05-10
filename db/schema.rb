@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_045124) do
+ActiveRecord::Schema.define(version: 2020_05_10_060536) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 2020_05_08_045124) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+    t.boolean "accepted", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "rejected", default: false
+    t.index ["project_id"], name: "index_requests_on_project_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,4 +81,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_045124) do
   add_foreign_key "memberships", "projects"
   add_foreign_key "memberships", "users"
   add_foreign_key "projects", "users"
+  add_foreign_key "requests", "projects"
+  add_foreign_key "requests", "users"
 end

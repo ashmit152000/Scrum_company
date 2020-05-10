@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    add_projects_path
+  	if current_user.rank == "Admin"
+    	add_projects_path
+    else 
+    	request_projects_path
+	end
 end
 
 

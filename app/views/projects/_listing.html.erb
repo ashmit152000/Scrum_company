@@ -13,8 +13,8 @@
   <tbody>
   	<% @project.memberships.each do |s| %>
     <tr>
-
-      <td><%= User.find_by(id: s.user_id).first_name + " " + User.find_by(id: s.user_id).last_name %></td>
+      
+      <td><%= fa_icon 'user'%>  <%= User.find_by(id: s.user_id).first_name + " " + User.find_by(id: s.user_id).last_name %></td>
 
         <td><%= User.find_by(id: s.user_id).email%></td>
 

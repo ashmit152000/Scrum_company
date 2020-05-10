@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
          has_many :memberships,dependent: :destroy
          has_many :projects, through: :memberships,dependent: :destroy
-
+         has_many :requests, dependent: :destroy
          validates :company_name,:first_name,:last_name,:rank, presence: true
 
 

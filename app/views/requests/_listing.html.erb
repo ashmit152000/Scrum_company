@@ -1,0 +1,37 @@
+<% if @requests.any?  %>
+<h1 align="center">Requests to join the project</h1>
+<div class="row">
+	<div class="col-10">
+			<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Accept/Decline</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	<% @requests.each do |r| %>
+    <tr>
+      
+      <td><%= fa_icon 'user'%>  <%= User.find_by(id: r.user_id).first_name + " " + User.find_by(id: r.user_id).last_name %></td>
+
+        <td><%= User.find_by(id: r.user_id).email%></td>
+
+          <td><%= link_to "Accept", accept_requests_path(id: r.id, project: r.project_id), class: "btn btn-success"%> <%= link_to "Decline", "#", class: "btn btn-danger", method: :post %></td>
+
+    </tr>
+
+    <% end %>
+
+  </tbody>
+</table>
+
+	</div>
+</div>
+<% else %>
+
+  <h2 align="center" class="add_margin">There are no joining requests for this project</h2>
+
+<% end %>

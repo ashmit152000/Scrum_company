@@ -1,11 +1,14 @@
-<p align="center" class="alert alert-info slide">All these projects are sorted by dead line in ascending order</p>
+<h1 align="center">Request to be part of any project</h1> 
+
+
+
 
 <div class="row">
 
 
   <% @projects.each do |p| %>
 
-
+<% if !p.users.include? current_user %>
 <div class="card col-md-3" style="width: 18rem;">
   <% if p.image.attached? %>
       <%= image_tag(p.image)%>
@@ -17,10 +20,12 @@
 <div class="card-body">
   <h5 class="card-title"><%= link_to "#{p.name }", project_path(p)%></h5>
   <p class="card-text"><%= p.description %></p>
+
 <% if current_user.memberships.where(project: p,rank: "Project Manager").first %>
    <a href="#" class="btn btn-warning">Edit</a>
     <%= link_to "Delete",project_path(p), method: :delete, class:"btn btn-danger"%>
-<% end %>
+ <% end %>
+
   <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 </div>
 
@@ -29,6 +34,8 @@
 
 
 </div>
+
+<% end %>
 
   <% end %>
 
