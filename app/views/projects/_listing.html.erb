@@ -18,7 +18,13 @@
 
         <td><%= User.find_by(id: s.user_id).email%></td>
 
-          <td><%= s.rank %></td>
+          <td><%= s.rank %> <% if Request.where(user: User.find_by(id: s.user_id),project: @project,accepted: true).first %>
+              
+                (<%= "Joined by request" %>)
+
+            <% end %>
+      
+          </td>
 
     </tr>
 

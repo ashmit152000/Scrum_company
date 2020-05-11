@@ -1,0 +1,29 @@
+
+<%  r = Request.where(project: @project, user: current_user, rejected: true).first %>
+
+<% if r %>
+	
+	<h4 class="alert alert-info">You request to join as  '<%= r.rank %>' was rejected by the project manager</h4>
+	
+<% end %>
+
+<%= form_tag   requests_path,remote: true,method: :post do %>
+
+<%= text_field_tag :project, params[:project], value: params[:id],readonly: true,hidden: true %>
+
+<%= text_field_tag :user, params[:user], value: current_user.id,readonly: true,hidden: true %>
+
+<%= select_tag "rank", options_for_select([ "Project Lead", "Lead Developer","Team Manager","Human resource manager","Frontend Developer", "Backend Developer", "Fullstack Developer"], "#{r.rank if r}"),placeholder: "Select rank" %>
+
+
+				<%= button_tag type: :submit, class: "btn btn-primary add_margin" do %>
+						<%= "Request to be a member" %>
+				<% end %>
+			
+
+
+<% end %>
+
+
+
+

@@ -10,6 +10,12 @@
 
 		<%= render 'projects/project-manager'%>
 
+		<%= link_to requests_path(project: @project) do %>
+		<%= fa_icon "handshake-o 2x" %> <button type="button" class="btn btn-primary add_margin">
+  		Requests <span class="badge badge-light"><%= @request %></span>
+		</button><br/>
+		<% end %>
+
 
 <div id="results">
 
@@ -20,14 +26,14 @@
 
 <% else %>
 	<!-- <a href="#" class="btn btn-primary add_margin">Request to be a member</a> -->
-	<%= link_to "Request to be a member", requests_path(user: current_user, project: @project), class: "btn btn-primary add_margin",method: :post %>
+	<div id="request-result">
+	
+	</div>
+	<%= render "projects/other-members"%>
+	
 <% end %>
 
-<%= link_to requests_path(project: @project) do %>
-	<%= fa_icon "handshake-o 2x" %> <button type="button" class="btn btn-primary add_margin">
-  Requests <span class="badge badge-light"><%= @request %></span>
-</button><br/>
-<% end %>
+
 
 
 
