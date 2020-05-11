@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_045119) do
+ActiveRecord::Schema.define(version: 2020_05_11_160905) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,22 @@ ActiveRecord::Schema.define(version: 2020_05_11_045119) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "assignments", force: :cascade do |t|
+    t.text "description"
+    t.datetime "start_date"
+    t.datetime "dead_line"
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+    t.integer "rating"
+    t.boolean "completed", default: false
+    t.boolean "accepted", default: false
+    t.boolean "rejected", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_assignments_on_project_id"
+    t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -79,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_05_11_045119) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assignments", "projects"
+  add_foreign_key "assignments", "users"
   add_foreign_key "memberships", "projects"
   add_foreign_key "memberships", "users"
   add_foreign_key "projects", "users"

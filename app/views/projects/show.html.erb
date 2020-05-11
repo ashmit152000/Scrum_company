@@ -11,9 +11,19 @@
 		<%= render 'projects/project-manager'%>
 
 		<%= link_to requests_path(project: @project) do %>
-		<%= fa_icon "handshake-o 2x" %> <button type="button" class="btn btn-primary add_margin">
-  		Requests <span class="badge badge-light"><%= @request %></span>
-		</button><br/>
+			<%= fa_icon "handshake-o 2x" %> <button type="button" class="btn btn-primary add_margin">
+	  		Requests <span class="badge badge-light"><%= @request %></span>
+			</button><br/>
+		
+	
+
+		<% end %>
+
+		<%= link_to new_project_assignment_path(params[:id]) do %>
+			<%= fa_icon "list-alt 2x" %> <button type="button" class="btn btn-primary add_margin">
+	  		Give assignments
+			</button><br/>
+
 		<% end %>
 
 

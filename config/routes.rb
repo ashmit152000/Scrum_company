@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'assignments/new'
   devise_for :users
   # get 'welcome/index'
   root to: "welcome#index"
-  resources :projects
+  resources :projects do 
+    resources :assignments
+  end
   resources :memberships, only: [:create,:destroy]
   resources :requests, only: [:create,:destroy,:index]
   # post '/createproject', to: 'projects#ajaxreply'
