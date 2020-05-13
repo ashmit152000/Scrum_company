@@ -1,0 +1,9 @@
+<h1 align="center">All your assignments</h1>
+
+<% @assignments.each do |a| %>
+	<%= link_to project_assignment_path(@project.id,a.id) do %>
+		<%= a.description %><br/>	
+	<% end %>
+
+	
+<% end %>

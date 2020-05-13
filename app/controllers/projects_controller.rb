@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
 
-  def create
+    def create
       name = params[:name]
       description = params[:description]
       start_date = params[:start_date]
@@ -9,13 +9,14 @@ class ProjectsController < ApplicationController
       image = params[:image]
 
       @project = Project.new(name: name, description: description, start_date: start_date, dead_line: dead_line, user: current_user)
+      @membership = Membership.new(user: current_user, project: @project, rank: "Project Manager")
+
+      @project.save 
+      @membership.save
 
 
-      @project.save
-
-
-      if @project.save
-
+      if @project.save && @membership.save
+        
         flash[:notice] = "The Project was successfully created"
         redirect_to projects_path
 
@@ -27,11 +28,14 @@ class ProjectsController < ApplicationController
       end
   end
 
-
   def show
       @project = Project.find_by(id: params[:id])
+      # @admin = current_user.rank
+      
     if @project.users.include? current_user
       @user_rank = Membership.where(user: current_user,project: @project).first.rank
+    else
+      @admin = current_user.rank
     end
     @request = @project.requests.where(accepted: false, rejected: false).count
     # puts params[:id]
@@ -39,8 +43,9 @@ class ProjectsController < ApplicationController
 
 
   def index
-
+    @user = User.where(rank: "Admin",id: current_user.id)
     @projects = current_user.projects.order! 'dead_line ASC'
+    # @projects = Project.where(user: current_user).order! 'dead_line ASC'
 
   end
 
@@ -75,4 +80,6 @@ class ProjectsController < ApplicationController
       end
     end
   end
+
+ 
 end

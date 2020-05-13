@@ -5,8 +5,8 @@
   </div>
 </div>
 
-<% if @project.users.include? current_user %>
-<% if @user_rank == "Project Manager" %>
+<% if current_user.rank == "Admin" ||  @project.users.include?(current_user)  %>
+<% if  @user_rank == "Project Manager" || @admin == "Admin" %>
 
 		<%= render 'projects/project-manager'%>
 

@@ -39,6 +39,7 @@ $(document).on('turbolinks:load',function(){
   var description;
   var start_date;
   var dead_line;
+  
 
 
 $('#name').change(function(){
@@ -56,6 +57,8 @@ $('#start_date').change(function(){
 $('#dead_line').change(function(){
   dead_line = $(this).val();
 })
+
+
 
 
 
