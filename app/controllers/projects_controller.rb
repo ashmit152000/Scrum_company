@@ -38,7 +38,8 @@ class ProjectsController < ApplicationController
       @admin = current_user.rank
     end
     @request = @project.requests.where(accepted: false, rejected: false).count
-    @assignment = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false).count
+    @assignment = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false,start_date: Time.now.strftime('%d/%m/%Y')).count
+    @assignments = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false).count
     
     # puts params[:id]
   end
