@@ -38,13 +38,15 @@ class ProjectsController < ApplicationController
       @admin = current_user.rank
     end
     @request = @project.requests.where(accepted: false, rejected: false).count
+    @assignment = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false).count
+    
     # puts params[:id]
   end
 
 
   def index
     @user = User.where(rank: "Admin",id: current_user.id)
-    @projects = current_user.projects.order! 'dead_line ASC'
+    @projects = current_user.projects.paginate(page: params[:page], per_page: 4).order! 'dead_line ASC'
     # @projects = Project.where(user: current_user).order! 'dead_line ASC'
 
   end
@@ -68,7 +70,7 @@ class ProjectsController < ApplicationController
 
     @project = Project.find_by(id: params[:project])
     @rank = params[:rank]
-
+    @membership = Membership.where(user: @member, project: @project).first
     if @member
       respond_to do |format|
         format.js {render partial: "projects/result"}

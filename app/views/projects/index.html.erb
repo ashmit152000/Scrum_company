@@ -1,5 +1,6 @@
 <p align="center" class="alert alert-info slide">All these projects are sorted by dead line in ascending order</p>
 
+    <%= will_paginate @projects, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 <div class="row">
 
 
@@ -34,4 +35,9 @@
 
 
 
-</div>
+</div><br/>
+
+    
+    <%= will_paginate @projects, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+   
+ 

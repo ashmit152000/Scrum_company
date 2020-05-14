@@ -27,7 +27,9 @@ $('.select_input').click(function(){
     $('#choose_image').click();
 })
 
-
+$('.display-p').click(function(){
+    alert($(this).width());
+  })
 
 
 })
@@ -163,6 +165,24 @@ $(document).on('click','#members-select',function(){
       }
     });
   }
+
+  var width = $('.display-p').width();
+
+  if((width >= 222.5) && (width <= 345)) {
+                $('.display-p').removeClass('bg-success');
+                $('.display-p').addClass('bg-info');
+                // alert($(this).width());
+
+  }else if((width > 345) && (width <= 555)){
+              $('.display-p').removeClass('bg-info');
+              $('.display-p').addClass('bg-warning');
+  }else if((width > 555)) {
+        $('.display-p').removeClass('bg-warning');
+              $('.display-p').addClass('bg-danger');
+  }
+
+
+
 
 
 

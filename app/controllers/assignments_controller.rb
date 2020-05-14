@@ -25,7 +25,7 @@ class AssignmentsController < ApplicationController
 
   def index
     @project = Project.find_by(id: params[:project_id])
-    @assignments = Assignment.where(project_id: params[:project_id],user_id: current_user.id)
+    @assignments = Assignment.where(project_id: params[:project_id],user_id: current_user.id).paginate(page: params[:page], per_page: 5).order! 'dead_line ASC'
   end
 
 private 

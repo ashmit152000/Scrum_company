@@ -16,8 +16,11 @@
     </div>
     </div>
 
-
+<%  if !@membership%>
     <button class="btn btn-success" id="members-select">Add as project member</button>
+<% else %>
+        <button class="btn btn-danger" disabled="true">Already a member</button>
+<% end %>
 
     <%= text_field_tag :user, params[:user], value: @member.id, readonly: true ,hidden: true %>
 
