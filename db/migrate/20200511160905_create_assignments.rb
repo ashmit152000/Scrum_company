@@ -2,8 +2,8 @@ class CreateAssignments < ActiveRecord::Migration[6.0]
   def change
     create_table :assignments do |t|
       t.text :description
-      t.datetime :start_date
-      t.datetime :dead_line
+      t.date :start_date
+      t.date :dead_line
       t.references :user, null: false, foreign_key: true
       t.references :project, null: false, foreign_key: true
       t.integer :rating
