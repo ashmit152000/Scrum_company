@@ -28,9 +28,21 @@ class AssignmentsController < ApplicationController
     @assignments = Assignment.where(project_id: params[:project_id],user_id: current_user.id).paginate(page: params[:page], per_page: 5).order! 'dead_line ASC'
   end
 
+
+def add_label
+  @project = Project.find_by(id: params[:project])
+  @assignment = Assignment.find_by(id: params[:assignment])
+  @assignment.label = params[:label]
+  # @assignment.save
+
+  if @assignment.save
+    redirect_to project_assignments_path(@project.id)
+  end
+end
+
 private 
 def assignment_params
-	params.require(:assignment).permit(:description,:start_date,:dead_line,:user_id,:rating,:completed,:accepted,:rejected,:project_id)
+	params.require(:assignment).permit(:description,:start_date,:dead_line,:user_id,:rating,:completed,:accepted,:rejected,:project_id,:label)
 end
   
 end

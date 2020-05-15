@@ -9,7 +9,7 @@
 		<li class= "list-group-item list-group-item-danger assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)') %></li>
 		<br/>	
 	<% else %>
-		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)') %></li>
+		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %> | <span class="badge badge-danger"><% if a.label %> Label:- <%= a.label %> <% end %></span></li>
 		<br/>	
 	<% end %>
 	

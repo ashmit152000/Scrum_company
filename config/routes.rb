@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post 'accept_requests',to: "request#accept"
   get 'decline_requests',to: "requests#decline"
   post 'decline_requests',to: "requests#decline" 
+  get 'add_label',to:"assignments#add_label"
+  post 'add_label',to:"assignments#add_label"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
