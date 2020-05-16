@@ -39,9 +39,9 @@ class ProjectsController < ApplicationController
     end
     @request = @project.requests.where(accepted: false, rejected: false).count
 
-    @assignment = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false,created_at: Date.current).count
+    @assignment_new = Assignment.where(user: current_user, project: @project,created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).count
 
-    @assignments = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false).count
+    @assignments_total = Assignment.where(user_id: current_user.id,project: @project.id, accepted: false).count
     
     # puts params[:id]
   end

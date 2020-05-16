@@ -3,8 +3,8 @@ class CreateProjects < ActiveRecord::Migration[6.0]
     create_table :projects do |t|
       t.string :name
       t.text :description
-      t.date :start_date
-      t.date :dead_line
+      t.datetime :start_date
+      t.datetime :dead_line
       t.references :user, null: false, foreign_key: true
     end
   end

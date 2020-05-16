@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2020_05_15_060611) do
 
   create_table "assignments", force: :cascade do |t|
     t.text "description"
-    t.date "start_date"
-    t.date "dead_line"
+    t.datetime "start_date"
+    t.datetime "dead_line"
     t.integer "user_id", null: false
     t.integer "project_id", null: false
     t.integer "rating"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 2020_05_15_060611) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.date "start_date"
-    t.date "dead_line"
+    t.datetime "start_date"
+    t.datetime "dead_line"
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
   end

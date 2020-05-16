@@ -2,7 +2,7 @@
 
 <%= link_to project_assignments_path(@project) do %>
 			<%= fa_icon "list-alt 2x" %> <button type="button" class="btn btn-primary add_margin">
-	  		Your assignments <span class="badge badge-light">New: <%= @assignment %> / Total: <%= @assignments %></span>
+	  		Your assignments <span class="badge badge-light">New: <%=  @assignment_new %> / Total: <%=  @assignments_total %></span>
 			</button><br/>
 
 		<% end %>
