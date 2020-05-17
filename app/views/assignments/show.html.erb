@@ -1,5 +1,5 @@
  
- <h4 align="center">Task: <%= @a.description %> <% if @a.label %>(<%= @a.label %>) <% end %></h4> 
+ <h4 align="center">Task: <%= @a.description %> <% if @a.label && @a.user == current_user %>(<%= @a.label %>) <% end %></h4> 
 
  <div class="show_progress">
 
@@ -12,8 +12,9 @@
  <p style="float: right;">End Date: <%= @a.dead_line.strftime('%d/%m/%Y')%></p>
 </div>
 
-
+<% if @a.user == current_user %>
 <div class="search_area">
+
   <%= form_tag  add_label_path,method: :post do %>
 	
 		<label for="label">Label</label>
@@ -53,3 +54,4 @@
 
 	<% end %>
 </div>
+<% end %>

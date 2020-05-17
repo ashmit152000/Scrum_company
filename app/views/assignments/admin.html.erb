@@ -1,1 +1,38 @@
 	<h2 align="center"><%= @user.first_name + " " + @user.last_name %>'s assignments</h2> 
+
+
+
+	<ul class="list-group">
+<% if @assignments %>
+<%= will_paginate @assignment, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>
+<% @assignments.each do |a| %>
+
+	<% if Time.now.strftime("%d/%m/%y") >= a.dead_line.strftime("%d/%m/%y") %>
+		<li class= "list-group-item list-group-item-danger assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)') %> 
+			
+			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
+					<span class="badge badge-primary">Today</span>
+			<% end %>
+					
+	
+		</li>
+		<br/>	
+	<% else %>
+		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %> 
+
+			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
+					<span class="badge badge-primary">Today</span>
+			<% end %>
+		
+		</li>
+		<br/>	
+	<% end %>
+	
+	
+
+	
+<% end %>
+</ul>
+
+<%= will_paginate @assignments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>
+<% end %>

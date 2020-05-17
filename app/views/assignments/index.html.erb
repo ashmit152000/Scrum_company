@@ -2,6 +2,7 @@
 
 <ul class="list-group">
 
+<% if @assignments %>
 <%= will_paginate @assignments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>
 <% @assignments.each do |a| %>
 
@@ -34,3 +35,5 @@
 </ul>
 
 <%= will_paginate @assignments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>
+
+<% end %>
