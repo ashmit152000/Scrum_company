@@ -40,6 +40,13 @@ def add_label
   end
 end
 
+
+def admin
+  @project = Project.find_by(id: params[:project_id])
+  @user = User.find_by(id: params[:user_id])
+  @assignments = Assignment.where(project: @project, user: @user, accepted: false, completed: false)
+end
+
 private 
 def assignment_params
 	params.require(:assignment).permit(:description,:start_date,:dead_line,:user_id,:rating,:completed,:accepted,:rejected,:project_id,:label)

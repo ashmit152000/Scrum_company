@@ -7,6 +7,7 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Rank</th>
+      <th scope="col">Number of assignments</th>
 
     </tr>
   </thead>
@@ -23,7 +24,20 @@
                 (<%= "Joined by request" %>)
 
             <% end %>
+
+
+
       
+          </td>
+
+
+          <td>
+            <% user = User.find_by(id: s.user_id) %>
+
+          
+            <%= user.assignments.where(accepted: false,completed: false).count %>
+            
+            
           </td>
 
     </tr>
