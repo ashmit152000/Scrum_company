@@ -34,9 +34,18 @@
           <td>
             <% user = User.find_by(id: s.user_id) %>
 
+            <%= link_to  show_assignments_path(user_id: user.id, project_id: @project.id) do %>
           
-            <%= user.assignments.where(accepted: false,completed: false).count %>
+            <%= user.assignments.where(accepted: false,completed: false).count %>   
+            <% if user.assignments.where(accepted: false,completed: false).count > 1 %>
+                Assignments
+
+              <% else %>
+
+              Assignment
+            <% end %>
             
+            <% end %>
             
           </td>
 

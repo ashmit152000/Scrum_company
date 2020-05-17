@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   post 'decline_requests',to: "requests#decline" 
   get 'add_label',to:"assignments#add_label"
   post 'add_label',to:"assignments#add_label"
-  get 'show_assignments/user/:user_id/project/:project_id',to: "assignments#admin"
+  # get 'show_assignments',to: "assignments#admin"
+  get 'show_assignments/user/:user_id/project/:project_id',to: "assignments#admin", as: :show_assignments
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
