@@ -7,7 +7,9 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Rank</th>
+      <% if current_user.rank == "Admin" || Membership.where(user: current_user, project: @project).first.rank == "Project Manager" %>
       <th scope="col">Number of assignments</th>
+      <% end %>
 
     </tr>
   </thead>
@@ -31,9 +33,10 @@
           </td>
 
 
+        <% if current_user.rank == "Admin" || Membership.where(user: current_user, project: @project).first.rank == "Project Manager" %>
           <td>
             <% user = User.find_by(id: s.user_id) %>
-
+            
             <%= link_to  show_assignments_path(user_id: user.id, project_id: @project.id) do %>
           
             <%= user.assignments.where(accepted: false,completed: false).count %>   
@@ -48,6 +51,8 @@
             <% end %>
             
           </td>
+
+          <% end %>
 
     </tr>
 
