@@ -1,0 +1,10 @@
+
+<div class="progress">
+  <div class="progress-bar bg-success display-p" role="progressbar" style="width: <%= percentage(@a.start_date,@a.dead_line)  * 100 %>%" aria-valuenow="<%= days_left(@a.dead_line)%>" aria-valuemin="0" aria-valuemax="<%= calculate_days(@a.start_date,@a.dead_line)%>"></div>
+</div>
+<p style="float: left;">Start Date: <%= @a.start_date.strftime('%d/%m/%Y')%></p>
+ <p style="float: right;">End Date: <%= @a.dead_line.strftime('%d/%m/%Y')%></p>
+</div>
+
+
+	

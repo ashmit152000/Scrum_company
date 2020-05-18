@@ -14,6 +14,7 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 					
+
 	
 		</li>
 		<br/>	
@@ -29,9 +30,11 @@
 	<% end %>
 	
 	
-
+<!-- <%= a.dead_line %> -->
 	
 <% end %>
+
+
 </ul>
 
 <%= will_paginate @assignments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>

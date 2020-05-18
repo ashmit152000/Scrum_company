@@ -8,6 +8,7 @@ module AssignmentsHelper
 	def days_left(end_date)
 		d = Time.now
 		(end_date - d).to_f / 86400
+		
 	end
 
 	def percentage(start_date,end_date)
