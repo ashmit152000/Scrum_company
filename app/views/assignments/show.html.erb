@@ -1,5 +1,11 @@
  
- <h4 align="center">Task: <%= @a.description %> <% if @a.label && @a.user == current_user %>(<%= @a.label %>) <% end %></h4> 
+ <h4 align="center">Task: <%= @a.description %> <% if @a.label && @a.user == current_user %>(<%= @a.label %>) <% end %></h4> <br/>
+<% if @a.accepted == true %>
+
+<h4 align="center" class="alert alert-success"> Accepted by Project Manager</h4>
+
+<% elsif @a.rejected == true%>
+		<h4 align="center" class="alert alert-danger"> Rejected by Project Manager</h4>
 
  <div class="show_progress">
 
@@ -55,4 +61,9 @@
 
 	<% end %>
 </div>
+<% end %>
+
+
+
+		
 <% end %>
