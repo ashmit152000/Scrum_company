@@ -46,6 +46,12 @@ def admin
   @user = User.find_by(id: params[:user_id])
   @assignments = Assignment.where(project: @project, user: @user, accepted: false, completed: false).paginate(page: params[:page], per_page: 5).order! 'dead_line ASC'
 
+  @assignment_completed = Assignment.where(project: @project, user: @user, accepted: false, completed: true)
+
+  @assignment_accepted = Assignment.where(project: @project, user: @user, accepted: true, completed: true)
+
+  
+
 end
 
 private 

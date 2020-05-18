@@ -1,41 +1,28 @@
-	<h2 align="center"><%= @user.first_name + " " + @user.last_name %>'s assignments</h2> 
+	<h2 align="center"><%= @user.first_name + " " + @user.last_name %>'s assignments</h2> <br>
 
+<h4 align="center">Completed</h4>
 
-
-	<ul class="list-group">
-<% if @assignments %>
-<%= will_paginate @assignment, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>
-<% @assignments.each do |a| %>
-
-	<% if Time.now.strftime("%d/%m/%y") >= a.dead_line.strftime("%d/%m/%y") %>
-		<li class= "list-group-item list-group-item-danger assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)') %> 
-			
-			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
-					<span class="badge badge-primary">Today</span>
-			<% end %>
-					
 
 	
-		</li>
-		<br/>	
-	<% else %>
-		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %> 
-
-			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
-					<span class="badge badge-primary">Today</span>
-			<% end %>
-		
-		</li>
-		<br/>	
-	<% end %>
-	
-	
-<!-- <%= a.dead_line %> -->
-	
-<% end %>
+	<%= render 'assignments/admin_show', assignments: @assignment_accepted if @assignment_accepted %><br/>
 
 
-</ul>
+
+	
+
+
+<h4 align="center">Completed but not accepted</h4>
+
+	
+	
+	<%= render 'assignments/admin_show', assignments: @assignment_completed if @assignment_completed %><br/>
+
+
+
+
+
+	<h4 align="center">Incomplete</h4>
+	<%= render 'assignments/admin_show', assignments: @assignments if @assignments %>
+
 
 <%= will_paginate @assignments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer,class: "page-link" %>
-<% end %>
