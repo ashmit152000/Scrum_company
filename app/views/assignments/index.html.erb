@@ -13,7 +13,9 @@
 			<% end %>
 			
 			
-					
+				 <% if a.accepted == true %> | accepted <%= fa_icon "thumbs-up" %><% end %>
+
+				 <% if a.rejected == true %> | rejected <%= fa_icon "thumbs-down" %> <% end %>
 	
 		</li>
 		<br/>	
@@ -24,6 +26,9 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 		
+				 <% if a.accepted == true %> | accepted <%= fa_icon "thumbs-up" %><% end %>
+
+				 <% if a.rejected == true %> | rejected <%= fa_icon "thumbs-down" %> <% end %>
 		</li>
 		<br/>	
 	<% end %>
