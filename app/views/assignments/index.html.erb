@@ -16,6 +16,10 @@
 				 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>
+
+				  <% if a.completed == true && a.rejected == false && a.accepted == false %>
+						<span style="float: right">In checking <%= fa_icon "check" %></span>
+				 <% end %>
 	
 		</li>
 		<br/>	
@@ -29,6 +33,10 @@
 				 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>
+
+				  <% if a.completed == true && a.rejected == false && a.accepted == false %>
+						<span style="float: right">In checking <%= fa_icon "check" %></span>
+				 <% end %>
 		</li>
 		<br/>	
 	<% end %>

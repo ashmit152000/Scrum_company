@@ -62,7 +62,14 @@
 	<% end %>
 </div>
 
-<%= link_to "Submit Assignment", completed_path(@a.id), method: :post, class: "d-block p-2 bg-success text-white add_margin_above center_text", id: "remove_text_decoration" %>
+<% if (@a.completed != true  && @a.accepted != true && @a.rejected == true) || (@a.completed != true && @a.accepted != true && @a.rejected != true ) %>
+	<%= link_to "Submit Assignment", completed_path(@a.id), method: :post, class: "d-block p-2 bg-success text-white add_margin_above center_text", id: "remove_text_decoration" %>
+
+	<% elsif (@a.completed != true && @a.accepted == true && @a.rejected == false) || (@a.accepted == true && @a.completed == true && @a.rejected == false) %>
+			
+	<% else %>
+		<a class="d-block p-2 bg-success text-white add_margin_above center_text" id="remove_text_decoration" disabled>In checking</a>
+<% end %>
 <% else %>
 
 
