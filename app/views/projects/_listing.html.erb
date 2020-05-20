@@ -7,7 +7,8 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Rank</th>
-      <% if current_user.rank == "Admin" || Membership.where(user: current_user, project: @project).first.rank == "Project Manager" %>
+      
+      <% if @rank == "Admin" || Membership.where(user: current_user, project: @project,rank: "Project Manager").first %>
       <th scope="col">Number of assignments</th>
       <% end %>
 
@@ -33,7 +34,7 @@
           </td>
 
 
-        <% if current_user.rank == "Admin" || Membership.where(user: current_user, project: @project).first.rank == "Project Manager" %>
+        <% if @rank == "Admin" || Membership.where(user: current_user, project: @project,rank: "Project Manager").first %>
           <td>
             <% user = User.find_by(id: s.user_id) %>
             

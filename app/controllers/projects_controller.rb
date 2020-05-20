@@ -50,6 +50,8 @@ class ProjectsController < ApplicationController
   def index
     @user = User.where(rank: "Admin",id: current_user.id)
     @projects = current_user.projects.paginate(page: params[:page], per_page: 4).order! 'dead_line ASC'
+    @rank = current_user.rank
+    
     # @projects = Project.where(user: current_user).order! 'dead_line ASC'
 
   end
@@ -63,6 +65,7 @@ class ProjectsController < ApplicationController
   end
 
   def request_projects
+    
       @projects = Project.all
      
   end
