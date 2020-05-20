@@ -57,6 +57,25 @@ class ProjectsController < ApplicationController
   end
 
 
+  def edit
+    @project = Project.find_by(id: params[:id])
+  end
+
+
+  def update
+    @project = Project.find_by(id: params[:id])
+
+   
+    if @project.update(name: params[:project][:name],description: params[:project][:description],start_date: params[:project][:start_date],dead_line: params[:project][:dead_line],user_id: params[:project][:user_id])
+        respond_to do |format|
+          flash[:notice] = "Project edited successfully"
+          format.html {redirect_to project_path(@project.id)}
+        end
+      
+    end
+  end
+
+
   def destroy
     @project = Project.find_by(id: params[:id])
     @project.destroy

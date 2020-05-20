@@ -19,7 +19,7 @@
   <h5 class="card-title"><%= link_to "#{p.name }", project_path(p)%></h5>
   <p class="card-text"><%= p.description %></p>
 <% if current_user.memberships.where(project: p,rank: "Project Manager").first || current_user.rank == "Admin" %>
-   <a href="#" class="btn btn-warning">Edit</a>
+   <%= link_to "Edit", edit_project_path(p.id), class: "btn btn-warning"%>
     <%= link_to "Delete",project_path(p), method: :delete, class:"btn btn-danger"%>
 <% end %>
   <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
