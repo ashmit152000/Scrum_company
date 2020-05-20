@@ -13,7 +13,7 @@
 <% if Time.now.strftime("%d/%m/%Y") >= @a.dead_line.strftime("%d/%m/%Y")%>
 				<h4 align="center">Deadline already over(deadline: <%= @a.dead_line.strftime("%d/%m/%Y")%>)</h4><br/>
 
-				<%= render 'assignments/progressbar_finish'%>
+				<%= render 'assignments/progressbar_finish'%><br/>
 <% else %>
 	<%= render 'assignments/progressbar'%>
 <% end %>
@@ -61,6 +61,14 @@
 
 	<% end %>
 </div>
+
+<%= link_to "Submit Assignment", completed_path(@a.id), method: :post, class: "d-block p-2 bg-success text-white add_margin_above center_text", id: "remove_text_decoration" %>
+<% else %>
+
+
+<%= link_to "Accept", accept_assignment_path(@a.id), method: :post, class: "d-block p-2 bg-success text-white add_margin_above center_text", id: "remove_text_decoration" %>
+
+<%= link_to "Reject", reject_assignment_path(@a.id), method: :post, class: "d-block p-2 bg-danger text-white add_margin_top_little center_text", id: "remove_text_decoration" %>
 <% end %>
 
 

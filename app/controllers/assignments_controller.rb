@@ -46,13 +46,49 @@ def admin
   @user = User.find_by(id: params[:user_id])
   @assignments = Assignment.where(project: @project, user: @user, accepted: false, completed: false).paginate(page: params[:page], per_page: 5).order! 'dead_line ASC'
 
-  @assignment_completed = Assignment.where(project: @project, user: @user, accepted: false, completed: true)
+  @assignment_completed = Assignment.where(project: @project, user: @user, accepted: false, completed: true,rejected: false)
 
   @assignment_accepted = Assignment.where(project: @project, user: @user, accepted: true, completed: true)
 
   
 
 end
+
+
+def accept
+  @assignment = Assignment.find_by(id: params[:id])
+  @project = Project.find_by(id: params[:project_id])
+  @assignment.accepted = true
+  @assignment.rejected = false 
+  @assignment.completed = true
+  if @assignment.save
+    redirect_to project_assignment_path(@project.id, @assignment.id)
+  end
+end
+
+  def reject
+    @assignment = Assignment.find_by(id: params[:id])
+  @project = Project.find_by(id: params[:project_id])
+  @assignment.accepted = false
+  @assignment.completed = false
+  @assignment.rejected = true
+  if @assignment.save
+    redirect_to project_assignment_path(@project.id, @assignment.id)
+  end
+  end
+
+
+  def completed
+    @assignment = Assignment.find_by(id: params[:id])
+    @project = Project.find_by(id: params[:project_id])
+    @assignment.completed = true
+    @assignment.rejected = false
+    @assignment.accepted = false 
+      if @assignment.save
+        flash[:notice] = "Assignment submitted for checking"
+        redirect_to project_assignment_path(@project.id, @assignment.id)
+      end
+  end 
 
 private 
 def assignment_params

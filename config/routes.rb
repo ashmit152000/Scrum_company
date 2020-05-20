@@ -21,5 +21,10 @@ Rails.application.routes.draw do
   # get 'show_assignments',to: "assignments#admin"
   get 'show_assignments/user/:user_id/project/:project_id',to: "assignments#admin", as: :show_assignments
 
+  post 'accept_assignment/:id/project/:project_id', to: "assignments#accept", as: :accept_assignment
+  post 'reject_assignment/:id/project/:project_id',to: "assignments#reject", as: :reject_assignment
+
+  post 'submit_completed/:id/project/:project_id', to: "assignments#completed", as: :completed
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

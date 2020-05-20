@@ -40,8 +40,8 @@
             
             <%= link_to  show_assignments_path(user_id: user.id, project_id: @project.id) do %>
           
-            <%= user.assignments.where(accepted: false,completed: false).count %>   
-            <% if user.assignments.where(accepted: false,completed: false).count > 1 %>
+            <%= user.assignments.where(accepted: false).count %>   
+            <% if user.assignments.where(accepted: false).count > 1 %>
                 Assignments
 
               <% else %>
