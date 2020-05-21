@@ -4,12 +4,13 @@
 <% assignments.each do |a| %>
 
 	<% if Time.now.strftime("%d/%m/%y") >= a.dead_line.strftime("%d/%m/%y") %>
-		<li class= "list-group-item list-group-item-danger assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)') %> | <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
-			
+		<li class= "list-group-item list-group-item-danger assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)') %> 
 			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 					
+			| <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
+			
 			 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>
@@ -21,11 +22,13 @@
 		</li>
 		<br/>	
 	<% else %>
-		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %> | <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
+		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %>
 
 			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
 					<span class="badge badge-primary">Today</span>
 			<% end %>
+
+			 | <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
 
 			 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
