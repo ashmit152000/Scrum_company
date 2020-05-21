@@ -23,6 +23,34 @@ class AssignmentsController < ApplicationController
     @a = Assignment.find_by(id: params[:id])
   end
 
+
+  def edit
+    @project = Project.find_by(id: params[:project_id])
+    @a = Assignment.find_by(id: params[:id])
+    @users = @project.users.where.not(id: current_user.id)
+  end
+
+
+  def update
+    @assignment = Assignment.find_by(id: params[:id])
+    if @assignment.update(assignment_params)
+      respond_to do |format|
+        flash[:notice] = "Assignment edited successfully"
+        format.html {redirect_to project_assignment_path(@assignment)}
+      end
+    end
+  end
+
+
+  def destroy
+    @assignment = Assignment.find_by(id: params[:id])
+    @project = Project.find_by(id: params[:project_id])
+    @assignment.destroy 
+    flash[:notice] = "Assignment destroyed successfully"
+    redirect_to project_path(@project)
+
+  end
+
   def index
     @project = Project.find_by(id: params[:project_id])
     @assignments = Assignment.where(project_id: params[:project_id],user_id: current_user.id).paginate(page: params[:page], per_page: 5).order! 'dead_line ASC'
