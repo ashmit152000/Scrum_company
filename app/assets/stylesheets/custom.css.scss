@@ -115,11 +115,14 @@ nav {
   margin-top: 4rem;
 }
 
-.delete_btn {
-  color: red;
-  
-}
+
 
 #delete_btn {
     text-decoration: none;
+    color: red;
+}
+
+#edit_btn{
+  text-decoration: none;
+  color: darkgreen;
 }
