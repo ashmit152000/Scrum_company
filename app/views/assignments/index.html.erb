@@ -12,7 +12,7 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 			
-				| <% if a.rating %>rating: <%= a.rating%><% end %>
+				 <% if a.rating %>| rating: <%= a.rating%><% end %>
 				 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>
@@ -29,7 +29,7 @@
 			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
 					<span class="badge badge-primary">Today</span>
 			<% end %>
-				| <% if a.rating %>rating: <%= a.rating%><% end %>
+				 <% if a.rating %> | rating: <%= a.rating%><% end %>
 				 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>

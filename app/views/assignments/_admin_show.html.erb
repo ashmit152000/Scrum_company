@@ -9,7 +9,7 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 
-			| <% if a.rating %>rating: <%= a.rating%><% end %>
+			 <% if a.rating %>| rating: <%= a.rating%><% end %>
 					
 			| <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
 
@@ -32,7 +32,7 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 
-			| <% if a.rating %>rating: <%= a.rating%><% end %>
+			 <% if a.rating %> | rating: <%= a.rating%><% end %>
 
 			 | <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
 				
