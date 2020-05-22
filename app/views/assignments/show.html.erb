@@ -1,4 +1,7 @@
- 
+
+ 	<input type="text"  value="<%= params[:id] %>" id="assignment" readonly hidden>
+ 	<input type="text"  value="<%= params[:project_id] %>" id="project_id" readonly hidden>
+
  <h4 align="center">Task: <%= @a.description %> <% if @a.label && @a.user == current_user %>(<%= @a.label %>) <% end %></h4> <br/>
 <% if @a.accepted == true %>
 
@@ -72,12 +75,66 @@
 <% end %>
 <% else %>
 
-
+<% if @a.completed == true %>
 <%= link_to "Accept", accept_assignment_path(@a.id), method: :post, class: "d-block p-2 bg-success text-white add_margin_above center_text", id: "remove_text_decoration" %>
 
 <%= link_to "Reject", reject_assignment_path(@a.id), method: :post, class: "d-block p-2 bg-danger text-white add_margin_top_little center_text", id: "remove_text_decoration" %>
+<!-- Button trigger modal -->
+<button type="button" class="d-block p-2 bg-primary text-white add_margin_top_little center_text ratings" data-toggle="modal" data-target="#exampleModal">
+  Give Ratings
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ratings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        		  <div class='rating-stars text-center'>
+    <ul id='stars'>
+      <li class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+    </ul>
+  </div>
+        	
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" id="rate-it">Rate it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% end %>
 
+<% end %>
+
+<% if @a.completed == true%>
+<% if @a.rating %>
+<%= render 'assignments/stars'%>
+<input type="number"  value="<%= @a.rating %>" id="rating-id" readonly hidden>
+<% end %>
+<% end %>
 
 
 		

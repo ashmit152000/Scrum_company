@@ -12,7 +12,7 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 			
-			
+				| <% if a.rating %>rating: <%= a.rating%><% end %>
 				 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>
@@ -24,12 +24,12 @@
 		</li>
 		<br/>	
 	<% else %>
-		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %> <% if a.label %>| <span class="badge badge-danger"> Label: <%= a.label %> <% end %></span>
+		<li class= "list-group-item list-group-item-primary assignment"><%= link_to "#{a.description}", project_assignment_path(@project.id,a.id) %> | Deadline: <%= a.dead_line.strftime('%dth %B %Y (%A)')  %> <% if a.label %>| <span class="badge badge-danger"> Label: <%= a.label %> <% end %></span> 
 
 			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
 					<span class="badge badge-primary">Today</span>
 			<% end %>
-		
+				| <% if a.rating %>rating: <%= a.rating%><% end %>
 				 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>

@@ -118,6 +118,19 @@ end
       end
   end 
 
+  def ratings
+    @assignment = Assignment.find_by(id: params[:assignment])
+    # @project = Project.find_by(id: params[:project_id])
+
+   
+      @assignment.rating = params[:ratings]
+    if @assignment.save
+      flash.now[:notice] = "Rating saved"
+      redirect_to  project_assignment_path(params[:assignment],params[:project_id])
+    end
+    
+  end
+
 private 
 def assignment_params
 	params.require(:assignment).permit(:description,:start_date,:dead_line,:user_id,:rating,:completed,:accepted,:rejected,:project_id,:label)

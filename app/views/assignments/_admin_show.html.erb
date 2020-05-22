@@ -8,8 +8,12 @@
 			<% if a.created_at.strftime('%d/%B/%Y') == Time.now.strftime("%d/%B/%Y") %>
 					<span class="badge badge-primary">Today</span>
 			<% end %>
+
+			| <% if a.rating %>rating: <%= a.rating%><% end %>
 					
 			| <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
+
+			
 			
 			 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
@@ -28,8 +32,10 @@
 					<span class="badge badge-primary">Today</span>
 			<% end %>
 
-			 | <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
+			| <% if a.rating %>rating: <%= a.rating%><% end %>
 
+			 | <%= link_to "Edit", edit_project_assignment_path(params[:project_id],a),id: "edit_btn"%> <%= link_to "Delete", project_assignment_path(params[:project_id],a),method: :delete,class:"delete_btn",id: "delete_btn"%> 
+				
 			 <% if a.accepted == true %>  <span style="float: right">accepted <%= fa_icon "thumbs-up" %></span><% end %>
 
 				 <% if a.rejected == true %>  <span style="float: right">rejected <%= fa_icon "thumbs-down" %></span> <% end %>

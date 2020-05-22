@@ -32,6 +32,19 @@ $('.display-p').click(function(){
   })
 
 
+var rating = $('#rating-id').val();
+  var onStar = parseInt($('#stars-id li').data('value'), 10); // The star currently selected
+    var stars = $('#stars-id li').parent().children('li.star');
+
+    for (var i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (var i = 0; i < rating; i++) {
+      $(stars[i]).addClass('selected');
+    }
+
+
 })
 
 
@@ -187,3 +200,89 @@ $(document).on('click','#members-select',function(){
 
 
 })
+
+
+
+
+
+// star rating
+
+
+$(document).on('turbolinks:load',function(){
+  
+  /* 1. Visualizing things on Hover - See next part for action on click */
+  $('#stars li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+   
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+    
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+  
+
+
+  
+
+
+
+  
+  /* 2. Action to perform on click */
+  $('#stars li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+    
+    for (var i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (var i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+    
+    // JUST RESPONSE (Not needed)
+    
+  
+   
+    
+    
+  });
+
+ var ajaxRating = function(rating,assignment,project){
+
+      $.ajax({
+    url: "/ratings",
+      type: "post",
+      data: "ratings=" + rating + "&assignment=" + assignment + "&project=" + project,
+      success: function(data) {
+          location.reload();
+      },
+      error: function(data) {
+            location.reload();
+      }
+    });
+  }
+
+   $('#rate-it').click(function(){
+    // alert("Hello");
+    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    var assignment = $('#assignment').val();
+    var project = $('#project_id').val();
+    ajaxRating(ratingValue,assignment,project);
+  })
+  
+  
+});
+
+
+
