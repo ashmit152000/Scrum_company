@@ -2,7 +2,7 @@
  	<input type="text"  value="<%= params[:id] %>" id="assignment" readonly hidden>
  	<input type="text"  value="<%= params[:project_id] %>" id="project_id" readonly hidden>
 
- <h4 align="center">Task: <%= shorten_string_high(@a.description) %><span class="more">more</span><% if @a.label && @a.user == current_user %>(<%= @a.label %>) <% end %></h4> <br/>
+ <h4 align="center">Task: <%= shorten_string_high(@a.description) %><% if @a.description.gsub(/\s+/, '').size > 29 %><span class="more">more</span><% end %><% if @a.label && @a.user == current_user %>(<%= @a.label %>) <% end %></h4> <br/>
 <% if @a.accepted == true %>
 
 <h4 align="center" class="alert alert-success"> Accepted by Project Manager</h4>
