@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid color-blue">
   <div class="container">
     <h4 class="display-4" align="center"><strong>Project name</strong>: <%= @project.name %></h4>
-    <p class="lead" align="center"><strong>Project description:</strong> <%= @project.description %></p>
+    <p class="lead" align="center"><strong>Project description:</strong> <%= shorten_string(@project.description) %></p>
   </div>
 </div>
 

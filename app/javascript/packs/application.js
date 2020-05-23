@@ -45,6 +45,10 @@ var rating = $('#rating-id').val();
     }
 
 
+    $('.more').on('click',function(){
+          $('#description-show').click();
+    })
+
 })
 
 
