@@ -90,6 +90,10 @@ class ProjectsController < ApplicationController
   end
   # To search members
 
+  def user_show
+    @user = User.find_by(id: params[:id])
+  end
+
   def search_members
     @member = User.where(email: params[:member], company_name: current_user.company_name).first
 
